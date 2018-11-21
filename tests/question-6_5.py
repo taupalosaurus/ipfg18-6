@@ -78,7 +78,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> np.isclose(compute_velocity(2, 4, acc_array), 0.0820085591101)
+          >>> np.isclose(compute_velocity(2, 4, acc_array), 0.09213606319776001)
           True
           """,
           'hidden': False,
@@ -86,7 +86,7 @@ test = {
         },
         {
           'code': r"""
-          >>> np.isclose(compute_velocity(3, 5, acc_array), 0.217477015351)
+          >>> np.isclose(compute_velocity(3, 5, acc_array), 0.23266827148224)
           True
           """,
           'hidden': False,
@@ -94,7 +94,7 @@ test = {
         },
         {
           'code': r"""
-          >>> np.isclose(compute_velocity(12, 21, acc_array), 62.3006966189)
+          >>> np.isclose(compute_velocity(12, 21, acc_array), 62.36146164339277)
           True
           """,
           'hidden': False,
@@ -102,7 +102,7 @@ test = {
         },
         {
           'code': r"""
-          >>> np.isclose(compute_velocity(2, 4, acc_list), 0.082)
+          >>> np.isclose(compute_velocity(2, 4, acc_list), 0.092)
           True
           """,
           'hidden': False,
@@ -110,7 +110,7 @@ test = {
         },
         {
           'code': r"""
-          >>> np.isclose(compute_velocity(3, 5, acc_list), 0.21599999)
+          >>> np.isclose(compute_velocity(3, 5, acc_list), 0.23099999999999998)
           True
           """,
           'hidden': False,
@@ -118,7 +118,7 @@ test = {
         },
         {
           'code': r"""
-          >>> np.isclose(compute_velocity(12, 9, acc_list), 3.09)
+          >>> np.isclose(compute_velocity(12, 9, acc_list), 3.15)
           True
           """,
           'hidden': False,
