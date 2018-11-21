@@ -5,10 +5,13 @@
         "lecture.ipynb"
     ],
     "tests": {
+      "tests/question-6_0.py": "ok_test",
       "tests/question-6_1.py": "ok_test",
       "tests/question-6_2.py": "ok_test",
       "tests/question-6_3.py": "ok_test",
-      "tests/question-6_4.py": "ok_test"
+      "tests/question-6_4.py": "ok_test",
+      "tests/question-6_5.py": "ok_test",
+      "tests/question-6_6.py": "ok_test"
     },
     "default_tests": [
     ],

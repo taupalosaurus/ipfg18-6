@@ -6,7 +6,7 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> isinstance(time_array_63, np.ndarray)
+          >>> type(readTempDenFile) == types.FunctionType
           True
           """,
           'hidden': False,
@@ -14,15 +14,15 @@ test = {
         },
         {
           'code': r"""
-          >>> time_array_63.shape
-          (101,)
+          >>> len(param) # wrong number of argument
+          1
           """,
           'hidden': False,
           'locked': False
         },
         {
           'code': r"""
-          >>> time_array_63[0] == 0.
+          >>> type(temp_air_list) == list and type(dens_air_list) == list
           True
           """,
           'hidden': False,
@@ -30,95 +30,7 @@ test = {
         },
         {
           'code': r"""
-          >>> time_array_63[1] == 0.5
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> time_array_63[-2] == 49.5
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> time_array_63[-1] == 50
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> isinstance(acc_array_63, np.ndarray)
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> acc_array_63.shape
-          (101,)
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> np.isclose(acc_array_63[0], -0.00506375204384)
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> np.isclose(acc_array_63[1], 0.00500006128645)
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> np.isclose(acc_array_63[-2], 0.495000061286)
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> np.isclose(acc_array_63[-1], 0.479565276825)
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> np.isclose(compute_velocity(2, 4, alist), 0.0820085591101)
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> np.isclose(compute_velocity(3, 5, alist), 0.217477015351)
-          True
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> np.isclose(compute_velocity(12, 21, alist), 62.3006966189)
+          >>> type(temp_water_list) == list and type(dens_water_list) == list
           True
           """,
           'hidden': False,
@@ -126,8 +38,84 @@ test = {
         }
       ],
       'scored': True,
-      'setup': 'import numpy as np',
+      'setup': """
+import types; import inspect; param = inspect.signature(readTempDenFile).parameters
+""",
       'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> np.allclose(x, [-10.0, -5.0, 0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0])
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> np.allclose(y, [1.341, 1.316, 1.293, 1.269, 1.247, 1.225, 1.204, 1.184, 1.164])
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> temp_air_list == x and dens_air_list == y
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': """
+get_ipython().magic(\'matplotlib agg\')
+import matplotlib.pyplot as plt
+import numpy as np; 
+x, y = readTempDenFile(\"data/density_air.dat\")
+""",
+      'teardown': "get_ipython().magic(\'matplotlib notebook\')",
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> np.allclose(x, [0.0, 4.0, 15.0, 20.0, 25.0, 37.0, 50.0, 100.0])
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> np.allclose(y, [999.8425, 999.975, 999.1026, 998.2071, 997.0479, 993.3316, 988.04, 958.3665])
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> temp_water_list == x and dens_water_list == y
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': """
+get_ipython().magic(\'matplotlib agg\')
+import matplotlib.pyplot as plt
+import numpy as np; 
+x, y = readTempDenFile(\"data/density_water.dat\")
+""",
+      'teardown': "get_ipython().magic(\'matplotlib notebook\')",
       'type': 'doctest'
     }
   ]

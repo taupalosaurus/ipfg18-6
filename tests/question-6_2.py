@@ -6,23 +6,31 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> x
-          [-10.0, -5.0, 0.0, 5.0, 10.0, 15.0, 20.0, 25.0, 30.0]
+          >>> type(xlist) == list and type(ylist) == list
+          True
           """,
           'hidden': False,
           'locked': False
         },
         {
           'code': r"""
-          >>> y
-          [1.341, 1.316, 1.293, 1.269, 1.247, 1.225, 1.204, 1.184, 1.164]
+          >>> len(xlist) == 301 and len(ylist) == 301
+          True
           """,
           'hidden': False,
           'locked': False
         },
         {
           'code': r"""
-          >>> temp_air_list == x and dens_air_list == y
+          >>> np.allclose(xlist[0:3], [-1.0, -0.9933, -0.9867])
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> np.allclose(ylist[0:3], [-0.0, -0.0087, -0.0179])
           True
           """,
           'hidden': False,
@@ -30,31 +38,23 @@ test = {
         }
       ],
       'scored': True,
-      'setup': 'x, y = readTempDenFile("data/density_air.dat")',
-      'teardown': "",
+      'setup': 'import numpy as np',
+      'teardown': '',
       'type': 'doctest'
     },
     {
       'cases': [
         {
           'code': r"""
-          >>> x
-          [0.0, 4.0, 15.0, 20.0, 25.0, 37.0, 50.0, 100.0]
+          >>> type(xarray) == np.ndarray and type(yarray) == np.ndarray
+          True
           """,
           'hidden': False,
           'locked': False
         },
         {
           'code': r"""
-          >>> y
-          [999.8425, 999.975, 999.1026, 998.2071, 997.0479, 993.3316, 988.04, 958.3665]
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> temp_water_list == x and dens_water_list == y
+          >>> np.array_equal(xarray, xlist) and np.array_equal(yarray, ylist)
           True
           """,
           'hidden': False,
@@ -62,8 +62,32 @@ test = {
         }
       ],
       'scored': True,
-      'setup': 'x, y = readTempDenFile("data/density_water.dat")',
-      'teardown': "",
+      'setup': 'import numpy as np',
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> np.isclose(ymin, -0.9482)
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> np.isclose(ymax, 0.9482)
+          True
+          """,
+          'hidden': False,
+          'locked': True
+        }
+      ],
+      'scored': True,
+      'setup': 'import numpy as np',
+      'teardown': '',
       'type': 'doctest'
     }
   ]
